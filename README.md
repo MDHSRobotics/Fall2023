@@ -1,1 +1,2 @@
-# Fall2023
+# ChargedUp
+Repository for FRC 2023 Charged Up game
