@@ -12,7 +12,7 @@ public class Forklift extends GenericSubsystem {
     public static Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
 
     public Forklift() {
-        super(Map.of("sparkMaxElevator", 32, "sparkMaxElevatorTwo", 33, "sparkMaxExtender", 34, "sparkMaxClawLift", 35, "solenoidClaw", 7));
+        super(Map.of("sparkMaxElevator", 32, "sparkMaxElevatorTwo", 33, "sparkMaxExtender", 34, "sparkMaxClawLift", 35, "solenoidClaw", 6));
         Logger.setup("Constructing Subsystem: Forklift...");
 
         super.setCANSparkMaxBrakeMode("Elevator", IdleMode.kBrake);

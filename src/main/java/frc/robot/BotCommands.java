@@ -39,10 +39,9 @@ public class BotCommands {
     public static CommandBase closeClamp;
     public static CommandBase resetEncoders;
 
-    public static CycleFlipper cycleFlipper;
-
     //Intake
-    public static MoveIntake moveIntake;
+    public static CommandBase moveIntake;
+    public static CommandBase timedIntake;
 
     // Limelight
     public static EnterZone enterZone;
@@ -60,7 +59,6 @@ public class BotCommands {
         toggleDriverOrientation = new ToggleDriverOrientation(BotSubsystems.swerveDriver);
 
         toggleOrientation = BotSubsystems.swerveDriver.toggleOrientationCommand();
-
         lockWheels = BotSubsystems.swerveDriver.lockWheelsCommand();
 
         resetAbsoluteEncoderOffsets = BotSubsystems.swerveDriver.resetAbsoluteEncoderOffsets();
@@ -81,12 +79,11 @@ public class BotCommands {
         quickForklift = new QuickForklift(BotSubsystems.forklift);
 
         resetEncoders = BotSubsystems.forklift.resetEncoders();
-
-        cycleFlipper = new CycleFlipper(BotSubsystems.flipper);
         
 
         //Intake
-        moveIntake = new MoveIntake(BotSubsystems.intake);
+        moveIntake = BotSubsystems.intake.runIntakeCommand();
+        timedIntake = BotSubsystems.intake.runIntakeTime(1.0);
         
         // Pneumatics
         openClamp = BotSubsystems.forklift.openClampCommand();

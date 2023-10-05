@@ -59,10 +59,10 @@ public class SwerveDriver extends SubsystemBase {
           current absolute position in degrees. That number is the offset
           for this module.  Convert that value from degrees to radians below.
     */
-    public final double FL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-100.8984375); 
-    public final double FR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(4.5703125);
-    public final double RL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-166.025390625);
-    public final double RR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-114.345703125);
+    public final double FL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-110.830078125); 
+    public final double FR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-76.552734375);
+    public final double RL_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(177.978515625);
+    public final double RR_ABSOLUTE_ENCODER_OFFSET = Units.degreesToRadians(-175.869140625);
 
     //Drive Ramp Time
     private final double RAMP_TIME = 0.5;
