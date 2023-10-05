@@ -2,7 +2,6 @@ package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.BotSubsystems;
-import frc.robot.commands.forklift.CycleFlipper;
 import frc.robot.commands.forklift.ForkliftToPosition;
 import frc.robot.commands.swervedrive.TimedSwerve;
 
@@ -14,9 +13,6 @@ public class PlaceCube extends SequentialCommandGroup{
     public PlaceCube(){
 
         addCommands(
-
-            //Drop the claw by driving backwards
-            new CycleFlipper(BotSubsystems.flipper),
 
             //Lift the forklift before moving forward
             new ForkliftToPosition(BotSubsystems.forklift, AutoConstants.Levels.HIGH),
