@@ -60,7 +60,7 @@ public class GenericSubsystem extends SubsystemBase {
                 SparkMaxPIDController sparkMaxPID = sparkMax.getPIDController();
 
                 sparkMax.restoreFactoryDefaults();
-                sparkMax.setSmartCurrentLimit(15);
+                sparkMax.setSmartCurrentLimit(40);
 
                 m_sparkMaxMap.put(sparkMaxName, sparkMax);
                 m_sparkMaxPIDMap.put(sparkMaxName, sparkMaxPID);

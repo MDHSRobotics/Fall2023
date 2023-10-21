@@ -20,9 +20,10 @@ public class TimedSwerve extends CommandBase {
     private double m_targetTime;
     private Timer m_timer;
     private double m_startingHeading;
+    private double m_rampTime;
 
 
-    public TimedSwerve(SwerveDriver swerveDriver, double xSpeed, double ySpeed, double turningSpeed,  double timeInSeconds) {
+    public TimedSwerve(SwerveDriver swerveDriver, double xSpeed, double ySpeed, double turningSpeed,  double timeInSeconds, double rampTime) {
         Logger.setup("Constructing Command: TimedSwerve...");
 
         // Add given subsystem requirements
@@ -31,6 +32,7 @@ public class TimedSwerve extends CommandBase {
         m_xSpeed = xSpeed;
         m_ySpeed = ySpeed;
         m_turningSpeed = turningSpeed;
+        m_rampTime = rampTime;
         m_timer = new Timer();
         addRequirements(m_swerveDriver);
     }
@@ -47,6 +49,7 @@ public class TimedSwerve extends CommandBase {
 
     @Override
     public void execute() {
+        //Yaw Correction
         double yawDifference = m_startingHeading - gyro.getYaw();
         double newTurningSpeed = m_turningSpeed;
         if(yawDifference < -CORRECTION_TOLERANCE){
@@ -55,9 +58,24 @@ public class TimedSwerve extends CommandBase {
             newTurningSpeed += CORRECTION_SPEED;
         }
 
+        double xSpeedTwo = 0;
+        double ySpeedTwo = 0;
+        //Ramp time
+        double currentTime = m_timer.get();
+        if(currentTime < m_rampTime){
+            xSpeedTwo = m_xSpeed * (currentTime / m_rampTime); 
+            ySpeedTwo = m_ySpeed * (currentTime / m_rampTime); 
+        }else if(currentTime > m_targetTime - m_rampTime){
+            xSpeedTwo = m_xSpeed * (m_targetTime - currentTime / m_rampTime); 
+            ySpeedTwo = m_ySpeed * (m_targetTime - currentTime / m_rampTime); 
+        }else{
+            xSpeedTwo = m_xSpeed;
+            ySpeedTwo = m_ySpeed;
+        }
+
         Logger.info("Current Yaw: " + gyro.getYaw() + " Yaw Difference: " + yawDifference + " Initial Yaw: " + m_startingHeading + " Turning Speed: " + newTurningSpeed);
 
-        m_swerveDriver.setChassisSpeed(m_xSpeed, m_ySpeed, newTurningSpeed);
+        m_swerveDriver.setChassisSpeed(xSpeedTwo, ySpeedTwo, newTurningSpeed);
 
     }
 

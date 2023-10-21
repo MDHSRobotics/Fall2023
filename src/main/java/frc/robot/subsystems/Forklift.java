@@ -58,5 +58,9 @@ public class Forklift extends GenericSubsystem {
         Logger.info("Resetting Soft Stop");
         return this.runOnce(() -> resetMotorEncoders());
     }
+
+    public CommandBase LiftClaw(double time) {
+        return this.startEnd(() -> move("sparkMaxClaw", 0.5), () -> super.stopAllMotors()).withTimeout(time);
+    }
     
 }

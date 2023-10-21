@@ -22,15 +22,13 @@ public class BalanceChargeStation extends CommandBase {
 
     private boolean m_isOnChargeStation;
     private boolean m_failSafe;
-    private boolean m_isSideways;
     //private double m_startingHeading;
 
-    public BalanceChargeStation(SwerveDriver swerveDriver, boolean isSideways) {
+    public BalanceChargeStation(SwerveDriver swerveDriver) {
         Logger.setup("Constructing Command: BalanceChargeStation...");
 
         // Add given subsystem requirements
         m_swerveDriver = swerveDriver;
-        m_isSideways = isSideways;
         m_timer = new Timer();
         addRequirements(m_swerveDriver);
     }
@@ -51,13 +49,8 @@ public class BalanceChargeStation extends CommandBase {
         double currentAngle;
         double xSpeed = 0.;
         double ySpeed = 0.;
-        if(m_isSideways){
-            currentAngle = gyro.getPitch();
-            ySpeed = 1.;
-        }else{
-            currentAngle = gyro.getRoll();
-            xSpeed = 1.;
-        }
+        currentAngle = gyro.getPitch();
+        ySpeed = 1.;
 
         //Logger.info("Is on Charge Station: " + m_isOnChargeStation + " Balanced: " + m_isBalanced + " Angle: " + currentAngle);
         // sets a default speed if the robot is not on the charge station yet

@@ -21,7 +21,7 @@ public class Intake extends GenericSubsystem {
     }
 
     public CommandBase runIntakeTime(double time) {
-        return this.startEnd(() -> super.move("Intake", -1), () -> super.move("Intake", 0)).withTimeout(time);
+        return this.startEnd(() -> super.move("Intake", -1), () -> super.stopAllMotors()).withTimeout(time);
     }
 
 }

@@ -10,12 +10,9 @@ import frc.robot.commands.limelight.*;
 public class BotCommands {
 
     // Auto Command options
-    public static CommandBase placeCubeInner;
-    public static CommandBase placeCubeLeft;
-    public static CommandBase placeCubeRight;
-    public static CommandBase ejectCubeInner;
-    public static CommandBase ejectCubeLeft;
-    public static CommandBase ejectCubeRight;
+    public static CommandBase innerBalance;
+    public static CommandBase autoLeft;
+    public static CommandBase autoRight;
     public static CommandBase defaultAutoCommand;
 
     // SwerveDriver
@@ -38,6 +35,7 @@ public class BotCommands {
     public static CommandBase openClamp;
     public static CommandBase closeClamp;
     public static CommandBase resetEncoders;
+    public static CommandBase liftClaw;
 
     //Intake
     public static CommandBase moveIntake;
@@ -79,8 +77,8 @@ public class BotCommands {
         quickForklift = new QuickForklift(BotSubsystems.forklift);
 
         resetEncoders = BotSubsystems.forklift.resetEncoders();
+        liftClaw = BotSubsystems.forklift.LiftClaw(0.2);
         
-
         //Intake
         moveIntake = BotSubsystems.intake.runIntakeCommand();
         timedIntake = BotSubsystems.intake.runIntakeTime(1.0);
@@ -90,12 +88,9 @@ public class BotCommands {
         closeClamp = BotSubsystems.forklift.closeClampCommand();
 
         // Auto Commands 
-        placeCubeInner = new AutoFactory("Center", "Top");
-        placeCubeLeft = new AutoFactory("Left", "Top");
-        placeCubeRight = new AutoFactory("Right", "Top");
-        ejectCubeInner = new AutoFactory("Center", "Bottom");
-        ejectCubeLeft = new AutoFactory("Left", "Bottom");
-        ejectCubeRight = new AutoFactory("Right", "Bottom");
+        innerBalance = new AutoFactory("Center");
+        autoLeft = new AutoFactory("Left");
+        autoRight = new AutoFactory("Right");
         defaultAutoCommand = new DefaultAutoCommand();
     }
 }

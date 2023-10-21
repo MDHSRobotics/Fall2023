@@ -1,7 +1,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.PS4Controller;
 import frc.robot.consoles.Logger;
 import frc.robot.oi.controllers.JoystickContainer;
 import frc.robot.oi.controllers.PS4ControllerContainer;

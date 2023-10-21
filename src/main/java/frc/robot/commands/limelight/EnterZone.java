@@ -1,6 +1,5 @@
 package frc.robot.commands.limelight;
 
-import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.consoles.Logger;
 import frc.robot.sensors.Limelight;
@@ -11,9 +10,6 @@ import static frc.robot.BotSensors.gyro;
 public class EnterZone extends CommandBase {
 
     private SwerveDriver m_swerveDriver;
-
-    private PIDController m_xOffsetPidController;
-    private PIDController m_distancePidController;
 
     private boolean yCorrect = false;
     private boolean xCorrect = false;
@@ -32,30 +28,6 @@ public class EnterZone extends CommandBase {
         Logger.action("Initializing Command: EnterZone ...");
 
         Limelight.setPipeline(0);
-
-        double kPxOffset = 0.01;
-        double kIxOffset = 0;
-        double kDxOffset = 0;
-
-        double kPDistance = 0.01;
-        double kIDistance = 0;
-        double kDDistance = 0;
-
-        double xOffsetSetPoint = -5.0; 
-        double xOffsetTolerance = 0.1;
-
-        double distanceSetPoint = 5;
-        double distanceTolerance = 0.1;  
-
-        m_xOffsetPidController = new PIDController(kPxOffset, kIxOffset, kDxOffset);
-        m_distancePidController = new PIDController(kPDistance, kIDistance, kDDistance); 
-
-        m_xOffsetPidController.setSetpoint(xOffsetSetPoint); // Target x Offset
-        m_xOffsetPidController.setTolerance(xOffsetTolerance); // x Offset tolerance
-
-        m_distancePidController.setSetpoint(distanceSetPoint); // Target 0.5 ft away from limelight target
-        m_distancePidController.setTolerance(distanceTolerance); // Distance tolerance
-
     }
 
     @Override

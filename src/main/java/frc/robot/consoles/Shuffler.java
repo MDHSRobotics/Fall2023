@@ -146,15 +146,12 @@ public class Shuffler {
         m_forklftCommandLayout.add("Close Clamp", BotCommands.closeClamp);
         m_forklftCommandLayout.add("Reset Encoders", BotCommands.resetEncoders);
 
-        m_autoCommandLayout.add("Place Cube Inner", BotCommands.placeCubeInner);
-        m_autoCommandLayout.add("Place Cube Left", BotCommands.placeCubeLeft);
-        m_autoCommandLayout.add("Place Cube Right", BotCommands.placeCubeRight);
-        m_autoCommandLayout.add("Eject Cube Inner", BotCommands.ejectCubeInner);
-        m_autoCommandLayout.add("Eject Cube Left", BotCommands.ejectCubeLeft);
-        m_autoCommandLayout.add("Eject Cube Right", BotCommands.ejectCubeRight);
+        m_autoCommandLayout.add("Place Cube Inner", BotCommands.innerBalance);
+        m_autoCommandLayout.add("Place Cube Left", BotCommands.autoLeft);
+        m_autoCommandLayout.add("Place Cube Right", BotCommands.autoRight);
         m_autoCommandLayout.add("Default", BotCommands.defaultAutoCommand);
 
-        m_autoIndividualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver, true));
+        m_autoIndividualCommandLayout.add("Balance Charge Station", new BalanceChargeStation(BotSubsystems.swerveDriver));
         m_autoIndividualCommandLayout.add("Eject Cube", new EjectCube(BotSubsystems.intake, 1));
         m_autoIndividualCommandLayout.add("Place Cube", new PlaceCube());
 
