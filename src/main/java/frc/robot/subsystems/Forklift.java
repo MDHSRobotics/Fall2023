@@ -62,5 +62,9 @@ public class Forklift extends GenericSubsystem {
     public CommandBase LiftClaw(double time) {
         return this.startEnd(() -> move("sparkMaxClaw", 0.5), () -> super.stopAllMotors()).withTimeout(time);
     }
+
+    public CommandBase runWristTime(double time) {
+        return this.startEnd(() -> super.move("ClawLift", 1), () -> super.stopAllMotors()).withTimeout(time);
+    }
     
 }

@@ -29,17 +29,18 @@ public class AutoFactory extends SequentialCommandGroup {
             case "Right":
                 double sideToSideSpeed = (location == "Left") ? -AutoConstants.DEFAULT_DRIVE_SPEED : AutoConstants.DEFAULT_DRIVE_SPEED;
                 addCommands(
-                    new TimedSwerve(BotSubsystems.swerveDriver, 0, AutoConstants.DEFAULT_DRIVE_SPEED, 0, 0.4,0.1),
+                    new TimedSwerve(BotSubsystems.swerveDriver, 0, AutoConstants.DEFAULT_DRIVE_SPEED, 0, 0.4,0.15),
                     
                     new TurnDegrees(BotSubsystems.swerveDriver, -90),
                     
-                    new TimedSwerve(BotSubsystems.swerveDriver, 0, AutoConstants.DEFAULT_DRIVE_SPEED, 0, 0.4,0.1),
+                    new TimedSwerve(BotSubsystems.swerveDriver, 0, AutoConstants.DEFAULT_DRIVE_SPEED, 0, 0.4,0.15),
                     
                     new WaitCommand(0.1),
 
                     BotSubsystems.forklift.openClampCommand(),
+                    BotSubsystems.forklift.runWristTime(2),
 
-                    new TimedSwerve(BotSubsystems.swerveDriver, AutoConstants.FAST_DRIVE_SPEED,0 , 0, 2,0.1));
+                    new TimedSwerve(BotSubsystems.swerveDriver, AutoConstants.FAST_DRIVE_SPEED,0 , 0, 2.5,0.5));
                 break;
             
             default:
