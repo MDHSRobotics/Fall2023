@@ -77,7 +77,6 @@ public class BotCommands {
         quickForklift = new QuickForklift(BotSubsystems.forklift);
 
         resetEncoders = BotSubsystems.forklift.resetEncoders();
-        liftClaw = BotSubsystems.forklift.LiftClaw(0.2);
         
         //Intake
         moveIntake = BotSubsystems.intake.runIntakeCommand();

@@ -1,8 +1,8 @@
 package frc.robot.commands.auto;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.BotCommands;
 import frc.robot.BotSubsystems;
 import frc.robot.commands.swervedrive.TimedSwerve;
 
@@ -27,20 +27,46 @@ public class AutoFactory extends SequentialCommandGroup {
             //This is relative to the driver facing the field
             case "Left":
             case "Right":
-                double sideToSideSpeed = (location == "Left") ? -AutoConstants.DEFAULT_DRIVE_SPEED : AutoConstants.DEFAULT_DRIVE_SPEED;
+                //double sideToSideSpeed = (location == "Left") ? -AutoConstants.DEFAULT_DRIVE_SPEED : AutoConstants.DEFAULT_DRIVE_SPEED;
                 addCommands(
-                    new TimedSwerve(BotSubsystems.swerveDriver, 0, AutoConstants.DEFAULT_DRIVE_SPEED, 0, 0.4,0.15),
-                    
-                    new TurnDegrees(BotSubsystems.swerveDriver, -90),
-                    
-                    new TimedSwerve(BotSubsystems.swerveDriver, 0, AutoConstants.DEFAULT_DRIVE_SPEED, 0, 0.4,0.15),
-                    
-                    new WaitCommand(0.1),
+                    new ParallelCommandGroup(
+                        new TimedSwerve(BotSubsystems.swerveDriver, -AutoConstants.DEFAULT_DRIVE_SPEED,0 , 0, 0.3,0.1),
+                        
+                        BotSubsystems.forklift.runElevatorTime(0.4, -1)
+                    ),
+
+                    BotSubsystems.forklift.runExtenderTime(1.05, -1),
+
+                    BotSubsystems.forklift.runWristTime(0.6, 1),
+
+                    new TimedSwerve(BotSubsystems.swerveDriver, 0.2,0 , 0, 0.7,0.2),
 
                     BotSubsystems.forklift.openClampCommand(),
-                    BotSubsystems.forklift.runWristTime(2),
 
-                    new TimedSwerve(BotSubsystems.swerveDriver, AutoConstants.FAST_DRIVE_SPEED,0 , 0, 2.5,0.5));
+                    new WaitCommand(0.1),
+
+                    new ParallelCommandGroup(
+                        new TimedSwerve(BotSubsystems.swerveDriver, -0.2,0 , 0, 1,0.3),
+
+                        BotSubsystems.forklift.runWristTime(0.6, -1)
+                    ),
+
+                    BotSubsystems.forklift.runExtenderTime(1.05, 1),
+
+                    BotSubsystems.forklift.runElevatorTime(0.4, 1),
+
+                    new TimedSwerve(BotSubsystems.swerveDriver, 0, 0, -0.5, 3.8, 0),
+
+                    new WaitCommand(0.1),
+
+                    new TimedSwerve(BotSubsystems.swerveDriver, AutoConstants.FAST_DRIVE_SPEED,0 , 0, 2.55,0.5),
+
+                    BotSubsystems.forklift.runWristTime(0.9, 1),
+
+                    BotSubsystems.forklift.closeClampCommand(),
+
+                    BotSubsystems.forklift.runWristTime(0.9, -1)
+                );
                 break;
             
             default:

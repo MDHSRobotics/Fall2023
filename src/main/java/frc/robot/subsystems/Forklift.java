@@ -59,12 +59,16 @@ public class Forklift extends GenericSubsystem {
         return this.runOnce(() -> resetMotorEncoders());
     }
 
-    public CommandBase LiftClaw(double time) {
-        return this.startEnd(() -> move("sparkMaxClaw", 0.5), () -> super.stopAllMotors()).withTimeout(time);
+    public CommandBase runWristTime(double time, double power) {
+        return this.startEnd(() -> super.move("ClawLift", power), () -> super.stopAllMotors()).withTimeout(time);
     }
 
-    public CommandBase runWristTime(double time) {
-        return this.startEnd(() -> super.move("ClawLift", 1), () -> super.stopAllMotors()).withTimeout(time);
+    public CommandBase runElevatorTime(double time, double power) {
+        return this.startEnd(() -> super.move("Elevator", power), () -> super.stopAllMotors()).withTimeout(time);
+    }
+
+    public CommandBase runExtenderTime(double time, double power) {
+        return this.startEnd(() -> super.move("Extender", power), () -> super.stopAllMotors()).withTimeout(time);
     }
     
 }

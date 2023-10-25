@@ -73,6 +73,26 @@ public class TimedSwerve extends CommandBase {
             ySpeedTwo = m_ySpeed;
         }
 
+        //Clamp the speeds based on sign
+        if(m_xSpeed < 0){
+            if(xSpeedTwo > 0){
+                xSpeedTwo = 0;
+            }
+        }else if(m_xSpeed > 0){
+            if(xSpeedTwo < 0){
+                xSpeedTwo = 0;
+            }
+        }
+        if(m_ySpeed < 0){
+            if(ySpeedTwo > 0){
+                ySpeedTwo = 0;
+            }
+        }else if(m_ySpeed > 0){
+            if(ySpeedTwo < 0){
+                ySpeedTwo = 0;
+            }
+        }
+
         Logger.info("Current Yaw: " + gyro.getYaw() + " Yaw Difference: " + yawDifference + " Initial Yaw: " + m_startingHeading + " Turning Speed: " + newTurningSpeed);
 
         m_swerveDriver.setChassisSpeed(xSpeedTwo, ySpeedTwo, newTurningSpeed);
