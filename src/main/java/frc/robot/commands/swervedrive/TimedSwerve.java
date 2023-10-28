@@ -52,11 +52,14 @@ public class TimedSwerve extends CommandBase {
         //Yaw Correction
         double yawDifference = m_startingHeading - gyro.getYaw();
         double newTurningSpeed = m_turningSpeed;
-        if(yawDifference < -CORRECTION_TOLERANCE){
-            newTurningSpeed -= CORRECTION_SPEED;
-        }else if(yawDifference > CORRECTION_TOLERANCE){
-            newTurningSpeed += CORRECTION_SPEED;
-        }
+        if(m_turningSpeed == 0){
+            /*if(yawDifference < -CORRECTION_TOLERANCE){
+                newTurningSpeed -= CORRECTION_SPEED;
+            }else if(yawDifference > CORRECTION_TOLERANCE){
+                newTurningSpeed += CORRECTION_SPEED;
+            }*/
+            newTurningSpeed = yawDifference * 0.06;
+        }     
 
         double xSpeedTwo = 0;
         double ySpeedTwo = 0;

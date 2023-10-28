@@ -157,8 +157,8 @@ public class Shuffler {
 
         m_limelightCommandsLayout.add("Enter Zone", BotCommands.enterZone);
         m_limelightCommandsLayout.add("Align Gyro", BotCommands.alignGyro);
-        m_limelightCommandsLayout.add("Auto Drop Off", BotCommands.autoDropOff);
-        m_limelightCommandsLayout.add("Align Limelight", BotCommands.alignLimelight);
+        //m_limelightCommandsLayout.add("Auto Drop Off", BotCommands.autoDropOff);
+        //m_limelightCommandsLayout.add("Align Limelight", BotCommands.alignLimelight);
 
         m_sensorTab.add("Calibrate Gyro", BotCommands.calibrateGyro);
     }

@@ -44,8 +44,8 @@ public class BotCommands {
     // Limelight
     public static EnterZone enterZone;
     public static AlignGyro alignGyro;
-    public static AutoDropOff autoDropOff;
-    public static AlignLimelight alignLimelight;
+    //public static AutoDropOff autoDropOff;
+    //public static AlignLimelight alignLimelight;
 
     // Initialize all robot commands
     public static void initializeCommands() {
@@ -66,8 +66,8 @@ public class BotCommands {
         // Limelight
         alignGyro = new AlignGyro(BotSubsystems.swerveDriver, 0);
         enterZone = new EnterZone(BotSubsystems.swerveDriver);
-        autoDropOff = new AutoDropOff(8);
-        alignLimelight = new AlignLimelight(BotSubsystems.swerveDriver, 6);
+        //autoDropOff = new AutoDropOff(8);
+        //alignLimelight = new AlignLimelight(BotSubsystems.swerveDriver, 6);
  
         // Forklift
         moveForklift = new MoveForklift(BotSubsystems.forklift); 

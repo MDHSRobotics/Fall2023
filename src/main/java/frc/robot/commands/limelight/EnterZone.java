@@ -49,10 +49,10 @@ public class EnterZone extends CommandBase {
             newTurningSpeed += 0.1;
         }
 
-        if(xOffset <= -9){
+        if(xOffset <= -14){
             Logger.info("moving left");
             m_swerveDriver.setChassisSpeed(0, 0.2, newTurningSpeed);
-        }else if (xOffset >= -6){
+        }else if (xOffset >= -12){
             Logger.info("moving right");
             m_swerveDriver.setChassisSpeed(0, -0.2, newTurningSpeed);
         }else{
@@ -78,7 +78,7 @@ public class EnterZone extends CommandBase {
         if (xCorrect && yCorrect){
             m_swerveDriver.stopModules();
             atTarget = true;
-            Limelight.setPipeline(1);
+            //Limelight.setPipeline(1);
         } else {
             atTarget = false;
         }

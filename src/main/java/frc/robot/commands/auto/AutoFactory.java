@@ -29,6 +29,7 @@ public class AutoFactory extends SequentialCommandGroup {
             case "Right":
                 //double sideToSideSpeed = (location == "Left") ? -AutoConstants.DEFAULT_DRIVE_SPEED : AutoConstants.DEFAULT_DRIVE_SPEED;
                 addCommands(
+                    
                     new ParallelCommandGroup(
                         new TimedSwerve(BotSubsystems.swerveDriver, -AutoConstants.DEFAULT_DRIVE_SPEED,0 , 0, 0.3,0.1),
                         
@@ -39,7 +40,7 @@ public class AutoFactory extends SequentialCommandGroup {
 
                     BotSubsystems.forklift.runWristTime(0.6, 1),
 
-                    new TimedSwerve(BotSubsystems.swerveDriver, 0.2,0 , 0, 0.7,0.2),
+                    new TimedSwerve(BotSubsystems.swerveDriver, 0.2,0 , 0, 0.5,0.2),
 
                     BotSubsystems.forklift.openClampCommand(),
 
@@ -53,19 +54,22 @@ public class AutoFactory extends SequentialCommandGroup {
 
                     BotSubsystems.forklift.runExtenderTime(1.05, 1),
 
-                    BotSubsystems.forklift.runElevatorTime(0.4, 1),
+                    BotSubsystems.forklift.runElevatorTime(0.4, 1)
+                );
 
-                    new TimedSwerve(BotSubsystems.swerveDriver, 0, 0, -0.5, 3.8, 0),
+                if(location == "Right"){
+                    addCommands(new TimedSwerve(BotSubsystems.swerveDriver, 0, 0.4, 0, 0.5, 0),
+                    
+                    new WaitCommand(0.1));
+                }
 
+                addCommands(
+                    //turn
+                    new TimedSwerve(BotSubsystems.swerveDriver, 0, 0, -0.7, 1.48, 0),
+                    
                     new WaitCommand(0.1),
 
-                    new TimedSwerve(BotSubsystems.swerveDriver, AutoConstants.FAST_DRIVE_SPEED,0 , 0, 2.55,0.5),
-
-                    BotSubsystems.forklift.runWristTime(0.9, 1),
-
-                    BotSubsystems.forklift.closeClampCommand(),
-
-                    BotSubsystems.forklift.runWristTime(0.9, -1)
+                    new TimedSwerve(BotSubsystems.swerveDriver, AutoConstants.DEFAULT_DRIVE_SPEED,0 , 0, 3.5,0.5)
                 );
                 break;
             
