@@ -24,10 +24,10 @@ public class AutoFactory extends SequentialCommandGroup {
                 addCommands(new BalanceChargeStation(BotSubsystems.swerveDriver));
                 break;
         
-            //This is relative to the driver facing the field
+            //This is which direction the robot needs to move to clear the charge station
             case "Left":
             case "Right":
-                //double sideToSideSpeed = (location == "Left") ? -AutoConstants.DEFAULT_DRIVE_SPEED : AutoConstants.DEFAULT_DRIVE_SPEED;
+                double sideToSideSpeed = (location == "Left") ? -AutoConstants.DEFAULT_DRIVE_SPEED : AutoConstants.DEFAULT_DRIVE_SPEED;
                 addCommands(
                     
                     new ParallelCommandGroup(
@@ -54,16 +54,12 @@ public class AutoFactory extends SequentialCommandGroup {
 
                     BotSubsystems.forklift.runExtenderTime(1.05, 1),
 
-                    BotSubsystems.forklift.runElevatorTime(0.4, 1)
-                );
-
-                if(location == "Right"){
-                    addCommands(new TimedSwerve(BotSubsystems.swerveDriver, 0, 0.4, 0, 0.5, 0),
+                    BotSubsystems.forklift.runElevatorTime(0.4, 1),
+                
+                    new TimedSwerve(BotSubsystems.swerveDriver, 0, sideToSideSpeed, 0, 0.5, 0),
                     
-                    new WaitCommand(0.1));
-                }
-
-                addCommands(
+                    new WaitCommand(0.1),
+                
                     //turn
                     new TimedSwerve(BotSubsystems.swerveDriver, 0, 0, -0.7, 1.48, 0),
                     
