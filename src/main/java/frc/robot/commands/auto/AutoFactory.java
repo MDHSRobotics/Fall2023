@@ -21,7 +21,11 @@ public class AutoFactory extends SequentialCommandGroup {
         switch (location){
             case "Center":
                 // We're located in the center so balance on the charge station
-                addCommands(new BalanceChargeStation(BotSubsystems.swerveDriver));
+                addCommands(
+                    new EjectCube(BotSubsystems.intake, 1),
+                
+                    new BalanceChargeStation(BotSubsystems.swerveDriver)
+                );
                 break;
         
             //This is which direction the robot needs to move to clear the charge station
@@ -61,11 +65,11 @@ public class AutoFactory extends SequentialCommandGroup {
                     new WaitCommand(0.1),
                 
                     //turn
-                    new TimedSwerve(BotSubsystems.swerveDriver, 0, 0, -0.7, 1.48, 0),
+                    //new TimedSwerve(BotSubsystems.swerveDriver, 0, 0, -0.7, 1.4, 0),
                     
                     new WaitCommand(0.1),
 
-                    new TimedSwerve(BotSubsystems.swerveDriver, AutoConstants.DEFAULT_DRIVE_SPEED,0 , 0, 3.5,0.5)
+                    new TimedSwerve(BotSubsystems.swerveDriver, -AutoConstants.DEFAULT_DRIVE_SPEED,0 , 0, 3.5,0.5)
                 );
                 break;
             

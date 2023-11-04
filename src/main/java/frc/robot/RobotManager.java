@@ -70,10 +70,11 @@ public class RobotManager {
         autoCommandChooser = new SendableChooser<>();
 
         // Add commands to the autonomous command chooser
-        autoCommandChooser.setDefaultOption("Left", BotCommands.autoLeft);
+        autoCommandChooser.setDefaultOption("Testing Auto Command", BotCommands.defaultAutoCommand);
+        autoCommandChooser.addOption("Left", BotCommands.autoLeft);
         autoCommandChooser.addOption("Right", BotCommands.autoRight);
         autoCommandChooser.addOption("Inner", BotCommands.innerBalance);
-        autoCommandChooser.addOption("Testing Auto Command", BotCommands.defaultAutoCommand);
+        
 
         // Put the chooser on the dashboard
         SmartDashboard.putData("AutoMode", autoCommandChooser);

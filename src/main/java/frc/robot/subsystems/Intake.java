@@ -20,8 +20,5 @@ public class Intake extends GenericSubsystem {
         return this.run(() -> super.move("Intake", BotControllers.xbox1.regps4.getR2Axis() - BotControllers.xbox1.regps4.getL2Axis(), 0.1));
     }
 
-    public CommandBase runIntakeTime(double time) {
-        return this.startEnd(() -> super.move("Intake", -1), () -> super.stopAllMotors()).withTimeout(time);
-    }
 
 }

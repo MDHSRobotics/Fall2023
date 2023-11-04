@@ -80,7 +80,7 @@ public class BotCommands {
         
         //Intake
         moveIntake = BotSubsystems.intake.runIntakeCommand();
-        timedIntake = BotSubsystems.intake.runIntakeTime(1.0);
+        //timedIntake = BotSubsystems.intake.runIntakeTime(1.0);
         
         // Pneumatics
         openClamp = BotSubsystems.forklift.openClampCommand();

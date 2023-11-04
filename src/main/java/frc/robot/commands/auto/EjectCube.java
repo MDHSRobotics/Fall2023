@@ -26,12 +26,13 @@ public class EjectCube extends CommandBase{
         Logger.action("Initializing Command: Eject Cube...");
         m_timer.reset();
         m_timer.start();
-        BotSensors.gyro.setSideways();
+        //BotSensors.gyro.setSideways();
     }
 
     @Override
     public void execute(){
-        m_intake.move("sparkMaxIntake", -1);;
+        m_intake.move("Intake", -1);
+        m_intake.move("IntakeTwo", -1);
     }
 
     @Override
