@@ -17,7 +17,7 @@ public class Intake extends GenericSubsystem {
     }
 
     public CommandBase runIntakeCommand() {
-        return this.run(() -> super.move("Intake", BotControllers.xbox1.regps4.getR2Axis() - BotControllers.xbox1.regps4.getL2Axis(), 0.1));
+        return this.run(() -> super.move("Intake", BotControllers.xbox1.xbox.getRightTriggerAxis()- BotControllers.xbox1.xbox.getLeftTriggerAxis(), 0.1));
     }
 
 

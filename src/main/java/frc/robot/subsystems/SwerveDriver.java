@@ -329,5 +329,4 @@ public class SwerveDriver extends SubsystemBase {
         Logger.info("Reseting Encoder Offsets");
         return this.runOnce(() -> updateAbsoluteEncoderOffsets());
     }
-
 }   

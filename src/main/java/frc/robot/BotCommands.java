@@ -26,6 +26,9 @@ public class BotCommands {
 
     public static CalibrateGyro calibrateGyro;
 
+    public static ChangeSpeed changeSpeedFast;
+    public static ChangeSpeed changeSpeedSlow;
+
     // Forklift
     public static MoveForklift moveForklift;
     public static ForkliftToPosition forkliftPickUpPosition;
@@ -36,7 +39,7 @@ public class BotCommands {
     public static CommandBase closeClamp;
     public static CommandBase resetEncoders;
     public static CommandBase liftClaw;
-
+    
     //Intake
     public static CommandBase moveIntake;
     public static CommandBase timedIntake;
@@ -62,6 +65,9 @@ public class BotCommands {
         resetAbsoluteEncoderOffsets = BotSubsystems.swerveDriver.resetAbsoluteEncoderOffsets();
         
         calibrateGyro = new CalibrateGyro();
+
+        changeSpeedFast = new ChangeSpeed(BotSubsystems.swerveDriver, true); 
+        changeSpeedSlow = new ChangeSpeed(BotSubsystems.swerveDriver, false); 
 
         // Limelight
         alignGyro = new AlignGyro(BotSubsystems.swerveDriver, 0);

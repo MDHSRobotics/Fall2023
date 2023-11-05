@@ -15,7 +15,8 @@ import frc.robot.consoles.Shuffler;
 import edu.wpi.first.wpilibj.shuffleboard.*;
 import edu.wpi.first.networktables.GenericEntry;
 import java.util.Map;
-import frc.robot.BotControllers;
+
+import frc.robot.commands.swervedrive.Constants;
 
 public class SwerveDrive extends CommandBase {
 
@@ -41,25 +42,6 @@ public class SwerveDrive extends CommandBase {
 
     private GenericEntry entryRotation = m_telemetryLayout
         .add("Current Rotation", 0)
-        .getEntry();
-
-    //Preferences
-    private GenericEntry entryForwardBackwardSpeed = m_preferencesLayout
-        .addPersistent("Max Forward Backward Speed", 2.4)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 5))
-        .getEntry();
-
-    private GenericEntry entryLeftRightSpeed = m_preferencesLayout
-        .addPersistent("Max Left Right Speed", 1.2)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 5))
-        .getEntry();
-
-    private GenericEntry entryRotationSpeed = m_preferencesLayout
-        .addPersistent("Max Rotation Speed", 2.0)
-        .withWidget(BuiltInWidgets.kNumberSlider)
-        .withProperties(Map.of("min", 0, "max", 5))
         .getEntry();
     
     //Deadband
@@ -131,9 +113,10 @@ public class SwerveDrive extends CommandBase {
         //SmartDashboard.putString("09: Apply deadpan", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed2, sideToSideSpeed2, rotationSpeed2));
 
         // 3. Make the driving smoother
-        double forwardBackwardSpeed3 = m_forwardBackwardLimiter.calculate(forwardBackwardSpeed2) * entryForwardBackwardSpeed.getDouble(2.4);
-        double sideToSideSpeed3 = m_sideToSideLimiter.calculate(sideToSideSpeed2) * entryLeftRightSpeed.getDouble(1.2);
-        double rotationSpeed3 = m_rotationLimiter.calculate(rotationSpeed2) * entryRotationSpeed.getDouble(2.0);
+        double forwardBackwardSpeed3 = m_forwardBackwardLimiter.calculate(forwardBackwardSpeed2) * Constants.entryForwardBackwardSpeed.getDouble(2.4);
+        double sideToSideSpeed3 = m_sideToSideLimiter.calculate(sideToSideSpeed2) * Constants.entryLeftRightSpeed.getDouble(1.2);
+        double rotationSpeed3 = m_rotationLimiter.calculate(rotationSpeed2) * Constants.entryRotationSpeed.getDouble(2.0);
+        
 
         SmartDashboard.putString("08: Chassis velocity", String.format("X = %.2f; Y = %.2f, Turn = %.2f", forwardBackwardSpeed3, sideToSideSpeed3, rotationSpeed3));
 
@@ -143,17 +126,6 @@ public class SwerveDrive extends CommandBase {
         //Retrieve Shuffleboard data from subsystem
         entryPosition.setString(m_swerveDriver.getPosition());
         entryRotation.setDouble(m_swerveDriver.getRotation());
-
-        if(BotControllers.xbox1.regps4.getCrossButtonPressed()){
-            entryForwardBackwardSpeed.setDouble(2.4);
-            entryLeftRightSpeed.setDouble(1.6);
-            entryRotationSpeed.setDouble(2.0);
-        }
-        if(BotControllers.xbox1.regps4.getCircleButtonPressed()){
-            entryForwardBackwardSpeed.setDouble(0.5);
-            entryLeftRightSpeed.setDouble(0.5);
-            entryRotationSpeed.setDouble(0.95);
-        }
     }
 
     @Override
