@@ -26,6 +26,7 @@ public class Limelight {
     private static NetworkTableEntry m_pipeline = m_limelightNetworkTable.getEntry("pipeline"); // Set pipeline
     private static NetworkTableEntry m_camMode = m_limelightNetworkTable.getEntry("camMode");
     private static NetworkTableEntry m_tagID = m_limelightNetworkTable.getEntry("tid");
+    private static NetworkTableEntry m_botpose = m_limelightNetworkTable.getEntry("botpose");
 
     private static boolean m_isAligning = false;    
 

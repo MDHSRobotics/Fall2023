@@ -4,7 +4,8 @@ import frc.robot.subsystems.utils.EncoderTranslator;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration; 
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.can.TalonFXPIDSetConfiguration;
 import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.ctre.phoenix.sensors.CANCoder;
 
@@ -73,7 +74,6 @@ public class DevSwerveModule {
         m_drivingEncoderTranslate = new EncoderTranslator("TalonFX", WHEEL_DIAMETER, GEAR_RATIO_DRIVE);
 
         m_turningEncoderTranslate = new EncoderTranslator("TalonFX", WHEEL_DIAMETER, GEAR_RATIO_TURNING);
-
 
         resetEncoders();
 

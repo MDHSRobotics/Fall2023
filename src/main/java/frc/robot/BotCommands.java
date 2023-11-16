@@ -97,5 +97,7 @@ public class BotCommands {
         autoLeft = new AutoFactory("Left");
         autoRight = new AutoFactory("Right");
         defaultAutoCommand = new DefaultAutoCommand();
+
+        
     }
 }
